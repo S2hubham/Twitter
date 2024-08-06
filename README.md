@@ -31,5 +31,3 @@
 
 8. **Hashtags**
    - Each tweet can have hashtags.
-
-##hiiiii
