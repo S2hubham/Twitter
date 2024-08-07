@@ -1,13 +1,13 @@
-const express = require("express");
-const connect = require("./config/database");
+import express from "express";
+import {connect} from "./config/database.js"
 const app = express();
 
-const Tweet = require("./models/tweet");
+import TweetService from "./services/tweet-service.js";
 
 app.listen(3000, async () => {
     console.log(`Server started`);
     await connect();
     console.log("mongodb connected");
-    const tweets = await Tweet.find({content: ["first", "second tweet"]});
-    console.log(tweets);
+    let ser = new TweetService();
+    await ser.create({content : "Done with #refactor"})
 })
