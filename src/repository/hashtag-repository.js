@@ -46,16 +46,6 @@ class HashtagRepository {
             return [];
         }
     }
-
-    async HashtagwithTweetId(id) {
-        try {
-            const tags = await Hashtag.find({ tweets : {$in : id} });
-            return tags;
-        } catch (err) {
-            console.error("Error finding hashtags:", err);
-            return [];
-        }
-    }
     
 }
 

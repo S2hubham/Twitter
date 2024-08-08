@@ -10,7 +10,7 @@ class TweetService {
         const content = data.content;
         const tags = content
             .match(/#[a-zA-Z0-9_]+/g)
-            .map((tag) => tag.substring(1));
+            .map((tag) => tag.substring(1).toLowerCase());
         const tweet = await this.tweetRepository.create(data);
 
         let alreadyPresentTags = await this.hashtagRepository.findByName(tags);
@@ -29,17 +29,15 @@ class TweetService {
             await tag.save();
         });
 
-        // Fetch all tags with IDs
-        const allTags = await this.hashtagRepository.HashtagwithTweetId(tweet.id); // Include new tags as well
-        console.log("All Tags with IDs:", allTags);
+        // // Fetch all tags with IDs
+        // const allTags = await this.hashtagRepository.HashtagwithTweetId(tweet.id);
 
-        // Extract IDs
-        const hashtagIds = allTags.map((tag) => tag._id);
-        console.log("Hashtag IDs:", hashtagIds);
+        // // Extract IDs
+        // const hashtagIds = allTags.map((tag) => tag._id);
 
-        // Update the tweet with hashtag IDs
-        tweet.hashtags = hashtagIds;
-        await tweet.save();
+        // // Update the tweet with hashtag IDs
+        // tweet.hashtags = hashtagIds;
+        // await tweet.save();
 
         return tweet;
 
