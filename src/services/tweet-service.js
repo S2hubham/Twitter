@@ -29,24 +29,7 @@ class TweetService {
             await tag.save();
         });
 
-        // // Fetch all tags with IDs
-        // const allTags = await this.hashtagRepository.HashtagwithTweetId(tweet.id);
-
-        // // Extract IDs
-        // const hashtagIds = allTags.map((tag) => tag._id);
-
-        // // Update the tweet with hashtag IDs
-        // tweet.hashtags = hashtagIds;
-        // await tweet.save();
-
         return tweet;
-
-        // todo create hashtag and add here
-        /* 
-        1.bulkcreate in mongoose
-        2.filter title of hashtag based on multiple tags
-        3.how to add tweet id inside all the hashtags
-        */
     }
 }
 
