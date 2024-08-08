@@ -10,7 +10,7 @@ class TweetService {
         const content = data.content;
         const tags = content
             .match(/#[a-zA-Z0-9_]+/g)
-            .map((tag) => tag.substring(1)); // This regex extracts hashtags
+            .map((tag) => tag.substring(1));
         const tweet = await this.tweetRepository.create(data);
 
         let alreadyPresentTags = await this.hashtagRepository.findByName(tags);
@@ -30,7 +30,7 @@ class TweetService {
         });
 
         // Fetch all tags with IDs
-        const allTags = await this.hashtagRepository.findByName(tags); // Include new tags as well
+        const allTags = await this.hashtagRepository.HashtagwithTweetId(tweet.id); // Include new tags as well
         console.log("All Tags with IDs:", allTags);
 
         // Extract IDs

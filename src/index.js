@@ -9,5 +9,5 @@ app.listen(3000, async () => {
     await connect();
     console.log("mongodb connected");
     let ser = new TweetService();
-    await ser.create({content : "Done with #refactor"})
+    await ser.create({content : "My #new #boss is #damn #bro"})
 })
