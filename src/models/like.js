@@ -7,6 +7,7 @@ const likeSchema = new mongoose.Schema(
             required : true,
             enum : ["Tweet", "Comment"]
         },
+        // checks which model is it tweet or comment
         likeable : {
             type : mongoose.Schema.Types.ObjectId,
             required : true,
