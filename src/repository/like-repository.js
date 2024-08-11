@@ -19,6 +19,10 @@ class LikeRepository extends crudRepository {
         }
     }
 
+    async deleteOne(query) {
+        return await Like.deleteOne(query);
+    }
+
 }
 
 export default LikeRepository;
