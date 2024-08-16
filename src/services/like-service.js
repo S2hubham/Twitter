@@ -1,10 +1,11 @@
 import Tweet from "../models/tweet.js";
-import {TweetRepository, LikeRepository} from "../repository/index.js";
+import {TweetRepository, LikeRepository, CommentRepository} from "../repository/index.js";
 
 class LikeService {
     constructor(){
         this.likeRepository = new LikeRepository();
         this.tweetRepository = new TweetRepository();
+        this.commentRepository = new CommentRepository();
     }
 
     async toggleLike(modelId, modelType, userId){ // /api/v1/likes/toggle?id=modelid&type=Tweet
