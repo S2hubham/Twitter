@@ -8,12 +8,12 @@ class LikeService {
     }
 
     async toggleLike(modelId, modelType, userId){ // /api/v1/likes/toggle?id=modelid&type=Tweet
-        if (modelType === "Tweet") {
+        if (modelType == "Tweet") {
             var likeable = await this.tweetRepository.findAndPopulateLikes(modelId);
         }
         
         else if(modelType == "Comment"){
-            // TODO
+            var likeable = await this.commentRepository.findAndPopulateLikes(modelId);
         }
         else{
             throw new Error("Unknown model type");
