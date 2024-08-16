@@ -16,9 +16,31 @@ class TweetRepository extends crudRepository {
         }
     }
 
+
+    async recursivePopulate(model, doc, path) {
+        const populatedDoc = await model.populate(doc, {
+            path,
+            populate: {
+                path,
+                populate: {
+                    path,
+                    // Continue this pattern if necessary
+                }
+            }
+        });
+
+        if (populatedDoc[path] && populatedDoc[path].length > 0) {
+            for (let i = 0; i < populatedDoc[path].length; i++) {
+                populatedDoc[path][i] = await this.recursivePopulate(model, populatedDoc[path][i], path);
+            }
+        }
+        return populatedDoc;
+    }
+
     async getWithComments(id){
         try {
-            const tweet = await Tweet.findById(id).populate({path: "comments"}).lean();
+            let tweet = await Tweet.findById(id).populate({path: "comments"}).lean();
+            tweet = await this.recursivePopulate(Tweet, tweet, 'comments');
             return tweet;
         } catch (err) {
             console.log(err);
